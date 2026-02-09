@@ -1,10 +1,9 @@
 class RemitoVenta:
-
-    def __init__(self,nombreCliente,numeroRemito,totalVenta=0):
+    def __init__(self,nombreCliente,numeroRemito):
         self.nombreCliente=nombreCliente
         self.numeroRemito=numeroRemito
-        self.totalVenta=totalVenta
+        self.totalVenta=0
         self.detallesRemito=[]
 
-    def agregar_detallesRemito(self,valor):
+    def agregarDetallesRemito(self,valor):
         self.detallesRemito.append(valor)

@@ -1,9 +1,5 @@
 class RemitoVentaDetalle:
-    def __init__(self,cantidad,articulo,subtotal):
+    def __init__(self,cantidad,articulo):
         self.cantidad=cantidad
-        self.articulo=articulo
-        self.subtotal=subtotal
-
-        self.codigo=articulo.codigo
-        self.denominacion=articulo.denominacion
-        self.precio=articulo.precio
+        self.articulo=articulo #objeto
+        self.subtotal=self.cantidad*articulo.precio

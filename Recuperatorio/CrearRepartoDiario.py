@@ -6,101 +6,100 @@ from RepartoDiario import RepartoDiario
 
 
 class CrearRepartoDiario:
-    
-    def buscar_codigoarticulo(self,articulosDisponibles,codigoarticulo):
+    def __init__(self):
 
-        for i in range(len(articulosDisponibles)):
-                    if articulosDisponibles[i][0]==codigoarticulo:
-                         return i
-        return -1
-
+        self.articulosDisponibles=[Articulo(10, "Filtro de Aceite", 10000),
+                                   Articulo(20, "Filtro de Aire", 8000),
+                                   Articulo(30, "Filtro de Combustible", 7500),
+                                   Articulo(40, "Aceite de Motor sw/10", 25000),
+                                   Articulo(50, "Correa de Distribución", 20000)
+                                   ]
+        
+        self.clientesReparto={20284569875 : "Juan Alonso",
+                              20157896542 : "Emiliano Salas",
+                              50258963654 : "Pacallcar Autos",
+                              27654987456 : "Julieta Videla",
+                              50335588945 : "Todo Auto SRL"
+                              }
+        
     def main(self):
         
-        articulosDisponibles=[[10, "Filtro de Aceite", 10000],
-                              [20, "Filtro de Aire", 8000],
-                              [30, "Filtro de Combustible", 7500],
-                              [40, "Aceite de Motor sw/10", 25000],
-                              [50, "Correa de Distribución", 20000]
-                              ]
-        
-        clientesReparto={20284569875 : "Juan Alonso",
-                         20157896542 : "Emiliano Salas",
-                         50258963654 : "Pacallcar Autos",
-                         27654987456 : "Julieta Videla",
-                         50335588945 : "Todo Auto SRL"
-                         }
-        
-        fechaReparto=input("Indique la fecha del reparto: ")
-        instanciaRepartoDiario=RepartoDiario(fechaReparto)
+        fecha=input("Ingrese la fecha de reparto: ")
+        instaciaRepartoDiario=RepartoDiario(fecha)
 
         while True:
-            
-            print("Ingrese los datos del remito")
-            nombreCliente=input("Ingrese el nombre del cliente: ")
-            legajo=int(input("Ingrese el legajo: "))
-            if legajo not in clientesReparto.keys():
-                clientesReparto[legajo]=nombreCliente
-                print("Legajo Creado")
-            numeroRemito=int(input("Ingrese el numero del remito: "))
-            instanciaRemitoVenta=RemitoVenta(nombreCliente,numeroRemito)
-            instanciaRepartoDiario.agregar_remitosVenta(instanciaRemitoVenta)
-
-            print("Ingrese los detalles de la venta: ")
+           
+            cuit=int(input("Ingrese el numero de cuit del cliente: "))
+            if cuit not in self.clientesReparto.keys():
+                print("El cuit no se encuentra, procedemos a agregarlo")
+                nombre=input("Ingrese el Nombre: ")
+                self.clientesReparto[cuit]=nombre
+                print("Cliente cargado¡¡")
+            else:
+                print("Cliente encontrado¡¡")
+                nombre=self.clientesReparto[cuit]
+    
+            numero=input("Ingrese el numero de remito: ")
+            instanciaRemitoVenta=RemitoVenta(nombre,numero)
+            instaciaRepartoDiario.agregar_remitosVenta(instanciaRemitoVenta)
 
             while True:
-                
-                encontrado=False
-                while encontrado==False:
-                    codigoarticulo=int(input("Ingrese el codigo del articulo: "))
+               
+                while True:
+                    codigoArticulo=int(input("Ingrese el codigo del articulo: "))
+                    encontrado=False
+                    for obj in self.articulosDisponibles:
+                        if obj.codigo==codigoArticulo:
+                           posicion=obj
+                           encontrado=True
+                           break
                     
-                    for linea in articulosDisponibles:
-                        for elemento in linea:
-                            if codigoarticulo==elemento:
-                                encontrado=True
                     if encontrado==False:
-                        print("El codigo es incorrecto")  
-
-                indice=self.buscar_codigoarticulo(articulosDisponibles,codigoarticulo)
+                        print("Articulo no encontrado¡¡")
+                    else:
+                        print("Articulo encontrado¡¡")
+                        break
+                
                 
 
-                codigo=articulosDisponibles[indice][0]
-                denominacion=articulosDisponibles[indice][1]
-                precio=articulosDisponibles[indice][2]
-                instanciaArticulo=Articulo(codigo,denominacion,precio)
+                cantidad=int(input("Ingrese la cantidad: "))
+                while cantidad<=0:
+                    print("La cantidad debe ser mayor a cero¡¡")
+                    cantidad=int(input("Ingrese la cantidad: "))
 
-                cantidad=int(input("Ingrese la cantidad: ")) 
-                subtotal=precio*cantidad
+                instanciaRemitoVentaDetalle=RemitoVentaDetalle(cantidad,posicion)
+                instanciaRemitoVenta.agregarDetallesRemito(instanciaRemitoVentaDetalle)
+                #instanciaRemitoVentaDetalle.subtotal=cantidad*posicion.precio
+                instanciaRemitoVenta.totalVenta+=instanciaRemitoVentaDetalle.subtotal
 
-                instanciaRemitoVentaDetalle=RemitoVentaDetalle(cantidad,instanciaArticulo,subtotal)
-                instanciaRemitoVenta.agregar_detallesRemito(instanciaRemitoVentaDetalle)
-                instanciaRemitoVenta.totalVenta+=subtotal
+                opcion1=input("¿Desea agregar otro articulo? S/N: ").upper()
+                if opcion1=="N":
+                    break
+                elif opcion1=="S":
+                    pass
+            
+            instaciaRepartoDiario.totalReparto+=instanciaRemitoVenta.totalVenta
+            opcion2=input("¿Desea agregar otro remito? S/N: ").upper()
+            if opcion2=="N":
+                break
+            elif opcion2=="S":
+                pass
 
-                salir1=input("¿Desea agregar otro detalle? Si/No: ")
-                if salir1=="No":
-                     
-                     break
-                
-            instanciaRepartoDiario.totalReparto+=instanciaRemitoVenta.totalVenta
+        print("Reparto diario")
+        print(f"Fecha: {instaciaRepartoDiario.fecha} ")
+        print("------Remitos del reparto------")
+        for objeto1 in instaciaRepartoDiario.remitosVenta:
+            print(f"Nombre Cliente: {objeto1.nombreCliente}")
+            print(f"Numero Remito: {objeto1.numeroRemito}")
+            for objeto2 in objeto1.detallesRemito:
+                objeto3=objeto2.articulo
+                print("Cantidad Items| Denominación Articulo | Precio Unitario | Subtotal")
+                print(f"{objeto2.cantidad} | {objeto3.denominacion} | {objeto3.precio}| {objeto2.subtotal}")
+            print(f"Total Remito Venta: {objeto1.totalVenta}")
+            print("----------------------------")
+        print(f"Monto Total Reparto: {instaciaRepartoDiario.totalReparto}")
 
-            salir2=input("¿Desea agregar otro remito? Si/No: ") 
-            if salir2=="No":
-                 break             
-                            
-        print("Reparto Diario")
-        print(f"Fecha: {fechaReparto}")
-        print("--------Remitos del reparto-------")
+instanciaCrearRepartoDiario=CrearRepartoDiario()
+instanciaCrearRepartoDiario.main()
+               
 
-        for objeto in instanciaRepartoDiario.remitosVenta:
-             print(f"Nombre del cliente: {objeto.nombreCliente}")
-             print(f"Numero remito: {objeto.numeroRemito}")
-             for elemento in objeto.detallesRemito:
-                  print("Cantidad Items  Denominación Articulo  Precio Unitario  Subtotal")
-                  print(f"        {elemento.cantidad}  {elemento.denominacion}   {elemento.precio}          {elemento.subtotal}")
-             print(f"Total remito venta: {objeto.totalVenta}")
-
-instanciaMain=CrearRepartoDiario()
-instanciaMain.main()                   
-
-                
-#{elemento.articulo.denominacion}
-#{elemento.articulo.precio}
