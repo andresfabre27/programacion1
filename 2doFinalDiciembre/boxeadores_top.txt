@@ -1,0 +1,21 @@
+codigo;nombre_completo;fuerza;agilidad;stamina;reflejos;tecnica;iq_boxeo
+1;Muhammad Ali;88;98;95;99;94;100
+2;Sugar Ray Robinson;92;94;100;93;100;100
+3;Joe Louis;100;75;92;85;90;92
+4;Floyd Mayweather Jr.;78;92;90;100;100;100
+5;Mike Tyson;100;90;75;90;85;82
+6;Henry Armstrong;85;92;100;85;90;90
+7;Manny Pacquiao;88;95;98;94;99;100
+8;Rocky Marciano;100;68;100;75;82;80
+9;Roberto Duran;92;85;90;92;92;90
+10;Jack Johnson;90;75;92;85;90;90
+11;Pernell Whitaker;70;95;90;100;100;92
+12;Larry Holmes;90;75;92;85;90;90
+13;Julio Cesar Chávez;92;85;100;82;90;90
+14;Carlos Monzon;92;75;92;85;92;90
+15;Sugar Ray Leonard;85;95;92;92;92;92
+16;Evander Holyfield;92;75;92;78;85;85
+17;Ezzard Charles;85;85;92;85;92;90
+18;Bernard Hopkins;78;75;92;85;92;100
+19;Sonny Liston;100;65;85;75;85;75
+20;George Foreman;100;65;85;70;85;75

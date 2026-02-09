@@ -1,0 +1,2 @@
+Boxeador 1: Mike Tyson score: 87.0 VS Boxeador 2: Joe Louis score: 89.0 Ganador= 89.0
+Boxeador 1: Manny Pacquiao score: 95.66666666666667 VS Boxeador 2: Joe Louis score: 89.0 Ganador= 95.66666666666667
