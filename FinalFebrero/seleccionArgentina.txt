@@ -1,0 +1,26 @@
+1;Walter Benítez;32;ARQ
+12;Gerónimo Rulli;32;ARQ
+23;Emiliano Martínez;33;ARQ
+13;Cristian Romero;27;DEF
+6;Marcos Senesi;28;DEF
+2;Juan Foyth;28;DEF
+19;Nicolás Otamendi;37;DEF
+3;Nicolás Tagliafico;32;DEF
+27;Valentín Barco;20;DEF
+4;Kevin Mac Allister;28;DEF
+14;Exequiel Palacios;27;MED
+11;Giovani Lo Celso;29;MED
+20;Alexis Mac Allister;27;MED
+8;Enzo Fernández;25;MED
+5;Leandro Paredes;31;MED
+7;Rodrigo De Paul;31;MED
+16;Thiago Almada;24;MED
+18;Nico Paz;20;MED
+9;Julián Álvarez;25;DEL
+10;Lionel Messi;38;DEL
+15;Nicolás González;27;DEL
+21;José López;24;DEL
+17;Giuliano Simeone;22;DEL
+22;Lautaro Martínez;28;DEL
+24;Joaquín Panichelli;22;DEL
+25;Gianluca Prestianni;19;DEL
