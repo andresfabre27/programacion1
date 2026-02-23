@@ -84,16 +84,20 @@ class seleccionArgentina:
 
             print(f"Jugador: {objeto.nombreCompleto}")
             print("Ingrese los valores")
-            contador=0
+            #contador=0
             suma=0
             for lista in self.indicadores:
                 print(f"Indicador: {lista[0]}")
                 valor=float(input("ingrese el valor: "))
-                self.indicadores[contador][1]=valor
-                self.indicadores[contador][2]=self.asignar_escala_ponderacion(objeto.puesto,lista[0])
-                self.indicadores[contador][3]=valor*self.asignar_escala_ponderacion(objeto.puesto,lista[0])
-                suma+=self.indicadores[contador][3]
-                contador+=1
+                lista[1]=valor
+                lista[2]=self.asignar_escala_ponderacion(objeto.puesto,lista[0])
+                lista[3]=valor*self.asignar_escala_ponderacion(objeto.puesto,lista[0])
+                suma+=lista[3]
+                #self.indicadores[contador][1]=valor
+                #self.indicadores[contador][2]=self.asignar_escala_ponderacion(objeto.puesto,lista[0])
+                #self.indicadores[contador][3]=valor*self.asignar_escala_ponderacion(objeto.puesto,lista[0])
+                #suma+=self.indicadores[contador][3]
+                #contador+=1
                 
 
             print("indicador | valor asignado | ponderacion | resultado")
@@ -125,13 +129,6 @@ class seleccionArgentina:
                 mejor_jugador.append(lista[0])
 
         print(f"El/los mejores jugadores son: {mejor_jugador} con promedio {mayorpromedio}")
-
-
-
-
-            
-
-        
 
 
 
